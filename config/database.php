@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,20 +30,16 @@ return [
     |
     */
 
-    'connections' => [
+'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DB_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
-            'synchronous' => null,
-            'transaction_mode' => 'DEFERRED',
-        ],
+        // HAPUS BLOK INI (Karena ini yang membuat Laravel bingung):
+        // 'mysql' => [
+        //     'DB_CONNECTION'=>'mysql'
+        //     'DB_HOST'=>'mysql.railway.internal'
+        //     ... dst
+        // ],
 
+        // PASTIKAN HANYA ADA BLOK INI:
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
@@ -63,7 +59,8 @@ return [
                 (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
+        
+        // ... (sisakan blok mariadb, pgsql, dll di bawahnya)
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
