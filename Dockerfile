@@ -26,4 +26,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 80
 
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'"]
