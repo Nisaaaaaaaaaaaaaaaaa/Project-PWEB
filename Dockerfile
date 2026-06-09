@@ -5,11 +5,12 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
+    libicu-dev \        # ← TAMBAHKAN INI (dibutuhkan intl)
     curl \
     zip \
     unzip \
     nginx \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip intl   # ← TAMBAHKAN "intl"
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -26,4 +27,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 80
 
-CMD ["sh", "-c", "php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'"]
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
