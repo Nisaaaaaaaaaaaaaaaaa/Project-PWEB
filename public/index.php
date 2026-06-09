@@ -1,5 +1,16 @@
 <?php
 
+// PAKSA KONEKSI KE MYSQL
+putenv('DB_CONNECTION=mysql');
+putenv('DB_HOST=mysql.railway.internal');
+putenv('DB_PORT=3306');
+putenv('DB_DATABASE=railway');
+putenv('DB_USERNAME=root');
+putenv('DB_PASSWORD=wOHYxJpWRPdttHXREOxmXRiWWLmcYhwe');
+
+use Illuminate\Contracts\Http\Kernel;
+// ... (biarkan sisa kode di bawahnya tetap ada)
+
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
